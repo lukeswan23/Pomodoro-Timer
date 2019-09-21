@@ -6,9 +6,9 @@ const TimerControl = (_ => {
   //state
   const times = {
     break: 5,
-    breakSeconds: 3, //300 for 5
+    breakSeconds: 300, //300 for 5
     session: 25,
-    sessionSeconds: 3, //1500 for 25
+    sessionSeconds: 1500, //1500 for 25
     currentState: "session" //can be session or break, used for timer stop functions
   };
 
@@ -19,6 +19,7 @@ const TimerControl = (_ => {
   const sessionEl = document.querySelector("#timer");
   const configButtonsEl = document.querySelector(".pomo__controls");
   const timerTitleEl = document.querySelector("#timerTitle");
+  const timerButtonEls = document.querySelectorAll(".up, .down");
 
   const init = _ => {
     listeners();
@@ -30,8 +31,12 @@ const TimerControl = (_ => {
       if (timeControls.active == false) {
         //if either timer is active then config buttons cannot be used
         if (event.target.id == "breakUp") {
-          times.break++;
-          times.breakSeconds = timeFunctions.getSeconds(times.break);
+          if (times.break >= 60) {
+            times.break = 60;
+          } else {
+            times.break++;
+            times.breakSeconds = timeFunctions.getSeconds(times.break);
+          }
         }
         if (event.target.id == "breakDown") {
           if (times.break <= 1) {
@@ -40,11 +45,14 @@ const TimerControl = (_ => {
             times.break--;
             times.breakSeconds = timeFunctions.getSeconds(times.break);
           }
-          console.log(times.break);
         }
         if (event.target.id == "sessionUp") {
-          times.session++;
-          times.sessionSeconds = timeFunctions.getSeconds(times.session);
+          if (times.session >= 60) {
+            times.session = 60;
+          } else {
+            times.session++;
+            times.sessionSeconds = timeFunctions.getSeconds(times.session);
+          }
         }
         if (event.target.id == "sessionDown") {
           if (times.session <= 1) {
@@ -54,6 +62,7 @@ const TimerControl = (_ => {
             times.sessionSeconds = timeFunctions.getSeconds(times.session);
           }
         }
+
         breakLengthEl.textContent = times.break;
         sessionLengthEl.textContent = times.session;
         render();
@@ -75,6 +84,19 @@ const TimerControl = (_ => {
   const render = _ => {
     console.log("break: " + times.breakSeconds);
     console.log("session: " + times.sessionSeconds);
+    console.log("opactiy: " + pomoButtonsEl.style.opacity);
+    console.log(timerButtonEls);
+    console.log(pomoButtonsEl);
+    if (timeControls.active == true) {
+      for (let elem of timerButtonEls) {
+        elem.style.opacity = ".5";
+      }
+    } else {
+      for (let elem of timerButtonEls) {
+        elem.style.opacity = "1";
+      }
+    }
+
     if (times.currentState == "session") {
       timerTitleEl.textContent = "Session";
       sessionEl.textContent = timeFunctions.timer(times.sessionSeconds);
@@ -103,10 +125,6 @@ const TimerControl = (_ => {
           times.breakSeconds = timeFunctions.getSeconds(times.break);
           Audio.init();
           timeControls.break();
-
-          //!!!NEED TO RENDER THE CASE OF TIMER ENDING ABD BREAK STARTING, IT NEEDS TO LOOP BACK AND FORTH BETWEEN SESSION TIMER AND BREAK
-          //timer will end
-          //break function will run which will run the timer again
         }
         render();
       }, 1000);
@@ -116,14 +134,12 @@ const TimerControl = (_ => {
         times.breakSeconds--;
         if (times.breakSeconds == -1) {
           //-1 to display 00:00 on the timer
-          //alert("break end");
           timeControls.breakStop();
           timeControls.breakActive = false;
           times.currentState = "session";
           times.sessionSeconds = timeFunctions.getSeconds(times.session);
           Audio.init();
-
-          timeControls.timer(); //timer needs to possibly take IN the value of session seconds, same as break maybe? ALSO NEED TO HANDLE PAUSING FUNCTIONALITY WHEN BREAK TIMER IS RUNNING
+          timeControls.timer();
         }
         render();
       }, 1000);
@@ -136,10 +152,11 @@ const TimerControl = (_ => {
     },
     timerReset() {
       times.session = 25;
+      sessionLengthEl.textContent = times.session;
       times.sessionSeconds = timeFunctions.getSeconds(times.session);
       times.break = 5;
+      breakLengthEl.textContent = times.break;
       times.breakSeconds = timeFunctions.getSeconds(times.break);
-
       this.timerStop();
       this.breakStop();
       render();
@@ -199,14 +216,9 @@ const TimerControl = (_ => {
 
         this.timerReset();
       }
+      render();
     }
   };
-
-  //hit button
-  //check if break or session is adtive
-  //if break is active, pause it
-
-  //if session is active pause it
 
   const timeFunctions = {
     getSeconds(minutes) {
@@ -233,7 +245,3 @@ const TimerControl = (_ => {
 })();
 
 export default TimerControl;
-
-// breakLengthEl.textContent = times.break;
-// sessionLengthEl.textContent = times.sessionLength;
-// sessionEl.textContent = times.session;

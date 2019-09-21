@@ -4,14 +4,14 @@
   box-sizing: border-box;
 }
 body {
-  background: #efd978;
+  background: #2b303a;
   font-family: "Righteous", cursive, Arial, Helvetica, sans-serif;
 }
 h1,
 h2,
 h3,
 p {
-  color: #1c171b;
+  color: #e8e9eb;
 }
 .container {
   max-width: 700px;
@@ -26,12 +26,14 @@ p {
 #title {
   font-size: 3rem;
   margin-bottom: 2rem;
-  color: #4f7653;
+  color: #e8e9eb;
 }
 
 .pomo__lengths {
   display: flex;
   justify-content: space-evenly;
+  padding-bottom: 1rem;
+  opacity: 1;
 }
 .arrows {
   padding: 5px;
@@ -86,14 +88,14 @@ p {
   margin: 0 0.5rem;
 }
 .pomo__timer p {
-  font-size: 3rem;
+  font-size: 4rem;
 }
 
 .pomo__timer__contents {
   padding: 0.5rem;
   margin: 0 auto;
-  border: 3px solid black;
-  border-radius: 25px;
+  border: 3px solid #7c7c7c;
+  border-radius: 45px;
   max-width: 40%;
 }
 .pomo__controls {
@@ -122,4 +124,10 @@ p {
   display: inline-block;
   height: 50px;
   width: 50px;
+}
+
+@media only screen and (max-width: 550px) {
+  .pomo__lengths {
+    display: block;
+  }
 }

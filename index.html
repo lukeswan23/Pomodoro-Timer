@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Beep</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Righteous&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <div class="pomo">
+          <header><h1 id="title">Pomodoro Clock</h1></header>
+          <div class="pomo__lengths">
+            <div class="pomo__break">
+              <h1>Break Length</h1>
+              <div class="pomo__break__config">
+                <div class="up" id="breakUp"></div>
+                <div class="pomo__timer__length">
+                  <p id="breakLength">
+                    5
+                  </p>
+                </div>
+
+                <div class="down" id="breakDown"></div>
+              </div>
+            </div>
+            <div class="pomo__length">
+              <h1>Session Length</h1>
+              <div class="pomo__session__config">
+                <div id="sessionUp" class="up"></div>
+                <div class="pomo__timer__length">
+                  <p id="sessionLength">
+                    25
+                  </p>
+                </div>
+                <div id="sessionDown" class="down"></div>
+              </div>
+            </div>
+          </div>
+          <div class="pomo__timer">
+            <div class="pomo__timer__contents">
+              <h1 id="timerTitle">Session</h1>
+              <p id="timer"></p>
+            </div>
+          </div>
+          <div class="pomo__controls">
+            <div id="start"></div>
+            <div id="pause"></div>
+            <div id="reset"></div>
+          </div>
+          <div id="pomo__audio">
+            <audio id="audio">
+              <source src="/data/time.wav" type="audio/wav" />
+            </audio>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="app.js" type="module"></script>
+  </body>
+</html>

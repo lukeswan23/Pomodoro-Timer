@@ -1,0 +1,125 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  background: #efd978;
+  font-family: "Righteous", cursive, Arial, Helvetica, sans-serif;
+}
+h1,
+h2,
+h3,
+p {
+  color: #1c171b;
+}
+.container {
+  max-width: 700px;
+  min-height: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+.pomo {
+  padding-top: 100px;
+}
+
+#title {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  color: #4f7653;
+}
+
+.pomo__lengths {
+  display: flex;
+  justify-content: space-evenly;
+}
+.arrows {
+  padding: 5px;
+}
+.arrows:hover {
+  cursor: pointer;
+}
+
+.pomo__lengths p {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.pomo__break__config {
+  justify-content: center;
+  display: flex;
+}
+
+.up {
+  background-image: url("img/up.svg");
+  background-size: 50px;
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+}
+
+.pomo__timer__length {
+  margin: auto 0;
+  padding: 0.5rem;
+}
+
+.down {
+  background-image: url("img/down.svg");
+
+  background-size: 50px;
+  display: inline-block;
+
+  height: 50px;
+  width: 50px;
+}
+
+.pomo__break__config button {
+  margin: 0 0.5rem;
+}
+
+.pomo__session__config {
+  justify-content: center;
+  display: flex;
+}
+
+.pomo__session__config button {
+  margin: 0 0.5rem;
+}
+.pomo__timer p {
+  font-size: 3rem;
+}
+
+.pomo__timer__contents {
+  padding: 0.5rem;
+  margin: 0 auto;
+  border: 3px solid black;
+  border-radius: 25px;
+  max-width: 40%;
+}
+.pomo__controls {
+  display: flex;
+  margin: 1rem;
+  justify-content: center;
+}
+
+#start {
+  background-image: url("img/play.svg");
+  background-size: 50px;
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+}
+#pause {
+  background-image: url("img/pause.svg");
+  background-size: 50px;
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+}
+#reset {
+  background-image: url("img/reset.svg");
+  background-size: 50px;
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+}

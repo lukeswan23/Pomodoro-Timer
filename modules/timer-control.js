@@ -6,9 +6,9 @@ const TimerControl = (_ => {
   //state
   const times = {
     break: 5,
-    breakSeconds: 300, //300 for 5
+    breakSeconds: 300,
     session: 25,
-    sessionSeconds: 1500, //1500 for 25
+    sessionSeconds: 1500,
     currentState: "session" //can be session or break, used for timer stop functions
   };
 
@@ -159,6 +159,7 @@ const TimerControl = (_ => {
       times.breakSeconds = timeFunctions.getSeconds(times.break);
       this.timerStop();
       this.breakStop();
+      this.active = false;
       render();
     },
     timerControl(buttonInput) {
